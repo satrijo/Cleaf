@@ -1,0 +1,23 @@
+{
+    "name": "satrijo/cleaf-framework",
+    "description": "Cleaf is a lightweight, open-source PHP web framework designed to simplify web development while maintaining flexibility and power.",
+    "type": "project",
+    "license": "MIT",
+    "version": "1.1.0",
+    "autoload": {
+        "psr-4": {
+            "Cleaf\\": "app/",
+            "Cleaf\\Routes\\": "routes/",
+            "Cleaf\\Views\\": "views/"
+        }
+    },
+    "authors": [
+        {
+            "name": "satrijo",
+            "email": "mail@satrio.dev"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    }
+}
