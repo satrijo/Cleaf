@@ -10,8 +10,8 @@ class UserController extends Controller
 
     public function index($name = 'Satriyo')
     {
-        $title = 'Todo List by Satriyo';
+        $title = 'Cleaf Framework';
 
-        View::render('todo', compact('title'));
+        View::render('home', compact('title'));
     }
 }

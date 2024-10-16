@@ -1,0 +1,15 @@
+{
+  "name": "cleaf",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npx tailwindcss -i ./resources/css/app.css -o ./public/assets/main.css --watch\" \"php -S localhost:9898 -t public\" \"browser-sync start --proxy 'localhost:9898' --port 9898 --files 'views/*.php, views/layout/*.php ,public/assets/*.css'\""
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
+  }
+}
