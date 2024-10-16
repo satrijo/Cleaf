@@ -8,7 +8,7 @@ use Cleaf\Config\View;
 class UserController extends Controller
 {
 
-    public function index()
+    public function index($name = 'Satriyo')
     {
         $title = 'Todo List by Satriyo';
 

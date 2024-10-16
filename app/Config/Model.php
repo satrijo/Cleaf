@@ -3,7 +3,7 @@
 namespace Cleaf\Config;
 
 use Cleaf\Config\App;
-use Cleaf\Config\Database;
+use Cleaf\Config\ConnectionPool;
 
 class Model
 {
@@ -11,12 +11,11 @@ class Model
 
     public function __construct()
     {
-        $host = App::config('DATABASE_HOST');
-        $user = App::config('DATABASE_USER');
-        $password = App::config('DATABASE_PASSWORD');
-        $dbname = App::config('DATABASE_NAME');
-        $port = App::config('DATABASE_PORT');
+        $this->db = ConnectionPool::getInstance()->getConnection();
+    }
 
-        $this->db = new Database($host, $user, $password, $dbname, $port);
+    public function __destruct()
+    {
+        ConnectionPool::getInstance()->releaseConnection($this->db);
     }
 }

@@ -5,14 +5,15 @@ namespace Cleaf\Config;
 class Router
 {
     private static $routes = [];
-
     private static $methods = ['get', 'post', 'put', 'delete'];
 
     public static function __callStatic($name, $arguments)
     {
         if (in_array($name, self::$methods)) {
-            self::$routes[$name][$arguments[0]] = $arguments[1];
-            self::$routes[$name][$arguments[0]]['middleware'] = $arguments[2] ?? [];
+            self::$routes[$name][$arguments[0]] = [
+                'callable' => $arguments[1],
+                'middleware' => $arguments[2] ?? []
+            ];
         }
     }
 
@@ -22,55 +23,71 @@ class Router
         $path = rtrim($path, '/') ?: '/';
         $method = strtolower($_SERVER['REQUEST_METHOD'] ?? 'get');
 
+        error_log("Path: $path, Method: $method");
+
         foreach (self::$routes[$method] as $route => $callable) {
-
-            if ($route !== $path) {
-                continue;
+            if (self::matchRoute($route, $path)) {
+                self::handleRoute($callable['callable'], $callable['middleware'], $path);
+                return;
             }
-
-            $next = function () use ($callable, $route, $path) {
-                $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)?', $route);
-                $routePattern = "#^" . $routePattern . "$#";
-
-                if (preg_match($routePattern, $path, $matches)) {
-                    array_shift($matches);
-
-                    $params = array_map(function ($match) {
-                        return $match === '' ? null : $match;
-                    }, $matches);
-
-                    if (is_array($callable)) {
-                        $className = $callable[0];
-                        $methodName = $callable[1];
-                        $instance = new $className();
-                        call_user_func_array([$instance, $methodName], $params);
-                    } else {
-                        call_user_func_array($callable, $params);
-                    }
-                }
-            };
-
-            if (!empty($callable['middleware'])) {
-                $middlewareChain = array_reduce(
-                    array_reverse($callable['middleware']),
-                    function ($next, $middleware) {
-                        return function () use ($middleware, $next) {
-                            $middlewareInstance = new $middleware();
-                            return $middlewareInstance->before($next);
-                        };
-                    },
-                    $next
-                );
-
-                $middlewareChain();
-            } else {
-                $next();
-            }
-
-            return;
         }
 
+        error_log("Route not found: $path");
         http_response_code(404);
         echo 'Page not found';
+    }
+
+    private static function matchRoute($route, $path)
+    {
+        $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $route);
+        $routePattern = "#^" . $routePattern . "$#";
+
+        return preg_match($routePattern, $path);
+    }
+
+    private static function handleRoute($callable, $middleware, $path)
+    {
+        $next = function () use ($callable, $path) {
+            $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $path);
+            $routePattern = "#^" . $routePattern . "$#";
+
+            if (preg_match($routePattern, $path, $matches)) {
+                array_shift($matches);
+                $params = array_map(function ($match) {
+                    return $match === '' ? null : $match;
+                }, $matches);
+
+                if (is_array($callable)) {
+                    $className = $callable[0];
+                    $methodName = $callable[1];
+                    $instance = new $className();
+                    call_user_func_array([$instance, $methodName], $params);
+                } else {
+                    call_user_func_array($callable, $params);
+                }
+            }
+        };
+
+        if (!empty($middleware)) {
+            $middlewareChain = array_reduce(
+                array_reverse($middleware),
+                function ($next, $middleware) {
+                    return function () use ($middleware, $next) {
+                        $middlewareInstance = new $middleware();
+                        $response = $middlewareInstance->before($next);
+                        if ($response) {
+                            echo $response;
+                            return;
+                        }
+                        return $next();
+                    };
+                },
+                $next
+            );
+
+            $middlewareChain();
+        } else {
+            $next();
+        }
     }
 }

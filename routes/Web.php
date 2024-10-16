@@ -11,9 +11,9 @@ class Web
     public static function routes()
     {
         Router::get('/', [UserController::class, 'index']);
+        Router::get('/{name}', [UserController::class, 'index']);
         Router::post('/', [UserController::class, 'index'], [AuthMiddleware::class]);
     }
-
 
     public static function run()
     {
