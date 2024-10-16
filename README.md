@@ -5,17 +5,25 @@ Cleaf is a lightweight, open-source PHP web framework designed to simplify web d
 ## Features
 
 - **Lightweight**: Cleaf is designed to be fast and efficient, with minimal overhead.
-- **PSR Compliant**: Implements [PSR-4](https://www.php-fig.org/psr/psr-4/) for autoloading and [PSR-0](https://www.php-fig.org/psr/psr-0/) for code organization.
+- **PSR Compliant**: Implements [PSR-4](https://www.php-fig.org/psr/psr-4/) for autoloading.
 - **Easy to Learn**: Simple structure and clear documentation make it easy for newcomers to get started.
 - **Flexible**: Suitable for small web applications to large-scale projects.
 - **Open Source**: All source code is publicly available on [GitHub](https://github.com/satrijo/Cleaf).
+- **Community-Sourced**: Cleaf is developed by the community and maintained by the community.
+- **Easy To Use**: Cleaf is designed to be easy to use and understand.
+- **Extensible**: Cleaf is extensible and can be easily customized to meet the needs of your application.
+- **Modular**: Cleaf is modular and can be easily extended to add new functionality.
+- **Reliable**: Cleaf is reliable and provides a robust and reliable development experience.
+- **TailwindCSS Compatible**: Cleaf is compatible with the [TailwindCSS](https://tailwindcss.com/) framework.
 
 ## Getting Started
 
 ### Prerequisites
 
-- PHP 7.4 or higher
+- PHP 8.0 or higher
 - Composer (for dependency management)
+- Git
+- Node.js or NPM
 
 ### Installation
 
@@ -32,6 +40,7 @@ Cleaf is a lightweight, open-source PHP web framework designed to simplify web d
 3. Install dependencies:
    ```bash
    composer install
+   npm install
    ```
 
 ### Running the Application
@@ -39,11 +48,10 @@ Cleaf is a lightweight, open-source PHP web framework designed to simplify web d
 To start the built-in PHP development server:
 
 ```bash
-cd public
-php -S localhost:8080
+npm run dev
 ```
 
-You can now access your Cleaf application at `http://localhost:8080`.
+You can now access your Cleaf application at `http://localhost:9899` .
 
 ## Contributing
 
@@ -59,7 +67,7 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before making a contr
 
 If you'd like to support the project financially, you can make a donation to help sustain development and cover project-related costs. Your contributions enable us to continue delivering new features and updates to Cleaf.
 
-[Donate to Cleaf](https://example.com/donate)
+[Donate to Cleaf](https://trakteer.id/cleaf/tip)
 
 ## License
 
