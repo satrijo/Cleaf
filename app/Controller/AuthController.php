@@ -53,13 +53,11 @@ class AuthController extends Controller
 
         if ($result) {
             if (password_verify($password, $result['password'])) {
-                // Set session
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['user_name'] = $result['name'];
                 $_SESSION['auth'] = true;
-                // Alihkan ke halaman utama setelah login berhasil
                 header('Location: /');
-                exit; // Pastikan untuk menghentikan skrip setelah header
+                exit;
             } else {
                 View::render('auth/login', [
                     'message' => 'Invalid email or password'

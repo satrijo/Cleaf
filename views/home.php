@@ -10,21 +10,16 @@ require __DIR__ . '/layout/header.php';
         </div>
     </div>
     <div class="mx-auto max-w-2xl text-center items-center flex flex-col justify-center">
-        <div class="hidden sm:mb-8 sm:flex sm:justify-center">
-            <div
-                class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                Support the project by donating on Trakteer. <a href="https://trakteer.id/cleaf/tip"
-                    class="font-semibold text-white ml-2"><span class="absolute inset-0"
-                        aria-hidden="true"></span>Donate<span aria-hidden="true">&rarr;</span></a>
-            </div>
-        </div>
-        <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl">Cleaf Framework</h1>
-        <p class="mt-6 text-lg leading-8 text-gray-300">Lightweight, fast, and ready for production. Cleaf is a modern
-            framework for building web applications with ease. Support for PHP 8.0 and above.
+        <!-- Make The List Of Links -->
+        <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl">Make the list of links</h1>
+        <p class="mt-6 text-lg leading-8 text-gray-300">
+            Cleaf is a tool that can help you to make the list of links. You can add your own links to the list and
+            share it with others. It is a free and open source project.
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
             <a href="#"
-                class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Documentation</a>
+                class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Add
+                Your Link</a>
             <a href="https://github.com/satrijo/cleaf" class="text-sm font-semibold leading-6 text-white">Source Code
                 <span aria-hidden="true">→</span></a>
         </div>

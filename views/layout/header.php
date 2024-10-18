@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,22 +30,26 @@ session_start();
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
+                <?php if (isset($_SESSION['user_name'])): ?>
                 <a href="/" class="text-sm font-semibold leading-6 text-white">Home</a>
+
                 <a href="#" class="text-sm font-semibold leading-6 text-white">About</a>
                 <a href="#" class="text-sm font-semibold leading-6 text-white">Pricing</a>
                 <a href="#" class="text-sm font-semibold leading-6 text-white">Contact Us</a>
+
+                <?php endif; ?>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <?php if (isset($_SESSION['user_name'])): ?>
-                    <span class="text-sm font-semibold leading-6 text-white">Hi,
-                        <?= explode(" ", $_SESSION['user_name'])[0] ?> - </span>
-                    <a href="/logout" class="ml-2 text-sm font-semibold leading-6 text-white">
-                        Log out <span aria-hidden="true">&rarr;</span>
-                    </a>
+                <span class="text-sm font-semibold leading-6 text-white">Hi,
+                    <?= explode(" ", $_SESSION['user_name'])[0] ?> - </span>
+                <a href="/logout" class="ml-2 text-sm font-semibold leading-6 text-white">
+                    Log out <span aria-hidden="true">&rarr;</span>
+                </a>
                 <?php else: ?>
-                    <a href="/login" class="text-sm font-semibold leading-6 text-white">
-                        Log in <span aria-hidden="true">&rarr;</span>
-                    </a>
+                <a href="/login" class="text-sm font-semibold leading-6 text-white">
+                    Log in <span aria-hidden="true">&rarr;</span>
+                </a>
                 <?php endif; ?>
             </div>
         </nav>
@@ -75,8 +76,10 @@ session_start();
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/25">
                         <div class="space-y-2 py-6">
+                            <?php if (isset($_SESSION['user_name'])): ?>
                             <a href="/"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Home</a>
+
                             <a href="#"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">About</a>
                             <a href="#"
@@ -84,11 +87,22 @@ session_start();
                             <a href="#"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Contact
                                 Us</a>
+
+                            <?php endif; ?>
                         </div>
                         <div class="py-6">
+                            <?php if (isset($_SESSION['user_name'])): ?>
+                            <span class="text-sm font-semibold leading-6 text-white">Hi,
+                                <?= explode(" ", $_SESSION['user_name'])[0] ?> - </span>
+                            <a href="/logout"
+                                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Log
+                                out</a>
+                            </a>
+                            <?php else: ?>
                             <a href="/login"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white hover:bg-gray-800">Log
                                 in</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
