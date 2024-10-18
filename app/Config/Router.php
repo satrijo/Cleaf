@@ -61,9 +61,9 @@ class Router
                     $className = $callable[0];
                     $methodName = $callable[1];
                     $instance = new $className();
-                    call_user_func_array([$instance, $methodName], $params);
+                    return call_user_func_array([$instance, $methodName], $params);
                 } else {
-                    call_user_func_array($callable, $params);
+                    return call_user_func_array($callable, $params);
                 }
             }
         };
@@ -74,20 +74,21 @@ class Router
                 function ($next, $middleware) {
                     return function () use ($middleware, $next) {
                         $middlewareInstance = new $middleware();
-                        $response = $middlewareInstance->before($next);
-                        if ($response) {
-                            echo $response;
-                            return;
-                        }
-                        return $next();
+                        return $middlewareInstance->before($next);
                     };
                 },
                 $next
             );
 
-            $middlewareChain();
+            $result = $middlewareChain();
+            if ($result !== null) {
+                echo $result;
+            }
         } else {
-            $next();
+            $result = $next();
+            if ($result !== null) {
+                echo $result;
+            }
         }
     }
 }
