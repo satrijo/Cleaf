@@ -19,6 +19,13 @@ class User extends Model
         return !empty($result) ? $result[0] : null;
     }
 
+    public function findByEmail($email)
+    {
+        $query = "SELECT * FROM users WHERE email = ?";
+        $result = $this->db->query($query, [$email]);
+        return !empty($result) ? $result[0] : null;
+    }
+
     public function all()
     {
         $query = "SELECT * FROM users";

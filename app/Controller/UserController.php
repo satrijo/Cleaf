@@ -10,8 +10,14 @@ class UserController extends Controller
 
     public function index($name = 'Satriyo')
     {
-        $title = 'Cleaf Framework';
-
+        $title = 'Home';
         View::render('home', compact('title'));
+    }
+
+    public function login()
+    {
+        $title = 'Login';
+
+        View::render('login', compact('title'));
     }
 }

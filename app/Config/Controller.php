@@ -2,4 +2,7 @@
 
 namespace Cleaf\Config;
 
-abstract class Controller {}
+class Controller
+{
+    public function __construct() {}
+}

@@ -62,4 +62,21 @@ class Database
 
         return $stmt->affected_rows;
     }
+
+    public function runSQLFile($filePath)
+    {
+        $sql = file_get_contents($filePath);
+
+        if ($sql === false) {
+            die("Error reading SQL file.");
+        }
+
+        if ($this->db->multi_query($sql)) {
+            do {
+            } while ($this->db->next_result());
+            echo "SQL file berhasil dieksekusi!\n ";
+        } else {
+            die('Error executing SQL: ' . $this->db->error);
+        }
+    }
 }
