@@ -1,0 +1,44 @@
+services:
+  app:
+    build: .
+    container_name: php-app
+    working_dir: /app
+    volumes:
+      - $PWD:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_DATABASE=cleaf
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+    networks:
+      - app-network
+    command: sh -c "npm install && composer install && php migrate.php database/schema.sql && npm run dev"
+
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: cleaf
+      MYSQL_USER: db
+      MYSQL_PASSWORD: root
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: bridge

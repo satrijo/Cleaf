@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"npx tailwindcss -i ./resources/css/app.css -o ./public/assets/main.css --watch\" \"php -S localhost:9898 -t public\" \"browser-sync start --proxy 'localhost:9898' --port 9898 --files 'views/**/*.php, views/layout/*.php ,public/assets/*.css, app/**/*.php'\""
+    "dev": "concurrently \"npx tailwindcss -i ./resources/css/app.css -o ./public/assets/main.css --watch\" \"php -S 0.0.0.0:9898 -t public\" \"browser-sync start --proxy '0.0.0.0:9898' --port 3000 --files 'views/**/*.php, views/layout/*.php ,public/assets/*.css, app/**/*.php'\""
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.9",

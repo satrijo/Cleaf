@@ -109,6 +109,7 @@ class PageController extends Controller
 
     public function underconstruction()
     {
-        View::render('underconstruction');
+        $title = 'Under Construction';
+        View::render('underconstruction', compact('title'));
     }
 }

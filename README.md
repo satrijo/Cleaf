@@ -71,7 +71,7 @@ To start the built-in PHP development server:
 npm run dev
 ```
 
-You can now access your Cleaf application at `http://localhost:9899` .
+You can now access your Cleaf application at `http://localhost:3000` .
 
 ## Contributing
 
