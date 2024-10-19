@@ -18,30 +18,18 @@
                      <p class="text-sm"> <?= $page['description'] ?></p>
                      <div class="mx-auto grid grid-cols-1 lg:gap-8 gap-4 lg:mx-0 lg:grid-cols-2 text-white mt-10">
                          <?php foreach ($contents as $key => $content) : ?>
-                             <div class="relative group">
-                                 <a href="<?= $content['url'] ?>" class="block h-full">
-                                     <article
-                                         class="flex flex-col items-start justify-between border border-gray-700 group-hover:border-gray-500 rounded-md p-5 h-full">
-                                         <div class="w-full flex flex-col h-full">
-                                             <h3 class="text-md lg:text-lg group-hover:text-gray-300">
-                                                 <?= $content['title'] ?>
-                                             </h3>
-                                         </div>
-                                     </article>
-                                 </a>
-                                 <form action="/pages/delete/<?= $page['id'] ?>" method="POST"
-                                     class="absolute top-2 right-2"
-                                     onsubmit="return confirm('Are you sure you want to delete this page?');">
-                                     <button type="submit"
-                                         class="p-1 bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out hover:bg-red-900">
-                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
-                                             viewBox="0 0 24 24" stroke="currentColor">
-                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                 d="M6 18L18 6M6 6l12 12" />
-                                         </svg>
-                                     </button>
-                                 </form>
-                             </div>
+                         <div class="relative group">
+                             <a href="<?= $content['url'] ?>" class="block h-full">
+                                 <article
+                                     class="flex flex-col items-start justify-between border border-gray-700 group-hover:border-gray-500 rounded-md p-5 h-full">
+                                     <div class="w-full flex flex-col h-full">
+                                         <h3 class="text-md lg:text-lg group-hover:text-gray-300">
+                                             <?= $content['title'] ?>
+                                         </h3>
+                                     </div>
+                                 </article>
+                             </a>
+                         </div>
                          <?php endforeach; ?>
                      </div>
                  </div>
