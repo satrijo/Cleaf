@@ -56,7 +56,7 @@ class AuthController extends Controller
                 $_SESSION['user_id'] = $result['id'];
                 $_SESSION['user_name'] = $result['name'];
                 $_SESSION['auth'] = true;
-                header('Location: /');
+                header('Location: /pages');
                 exit;
             } else {
                 View::render('auth/login', [

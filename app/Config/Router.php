@@ -26,15 +26,18 @@ class Router
         error_log("Path: $path, Method: $method");
 
         foreach (self::$routes[$method] as $route => $callable) {
-            if (self::matchRoute($route, $path)) {
-                self::handleRoute($callable['callable'], $callable['middleware'], $path);
+            $params = self::matchRoute($route, $path);
+            if ($params !== false) {
+                error_log("Route matched: $route");
+                error_log("Params: " . print_r($params, true));
+                self::handleRoute($callable['callable'], $callable['middleware'], $params);
                 return;
             }
         }
 
         error_log("Route not found: $path");
         http_response_code(404);
-        echo 'Page not found';
+        View::render('404');
     }
 
     private static function matchRoute($route, $path)
@@ -42,29 +45,28 @@ class Router
         $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $route);
         $routePattern = "#^" . $routePattern . "$#";
 
-        return preg_match($routePattern, $path);
+        if (preg_match($routePattern, $path, $matches)) {
+            array_shift($matches);
+            return array_map(function ($match) {
+                return $match === '' ? null : $match;
+            }, $matches);
+        }
+
+        return false;
     }
 
-    private static function handleRoute($callable, $middleware, $path)
+    private static function handleRoute($callable, $middleware, $params)
     {
-        $next = function () use ($callable, $path) {
-            $routePattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '([^/]+)', $path);
-            $routePattern = "#^" . $routePattern . "$#";
+        $next = function () use ($callable, $params) {
+            error_log("Calling controller with params: " . print_r($params, true));
 
-            if (preg_match($routePattern, $path, $matches)) {
-                array_shift($matches);
-                $params = array_map(function ($match) {
-                    return $match === '' ? null : $match;
-                }, $matches);
-
-                if (is_array($callable)) {
-                    $className = $callable[0];
-                    $methodName = $callable[1];
-                    $instance = new $className();
-                    call_user_func_array([$instance, $methodName], $params);
-                } else {
-                    call_user_func_array($callable, $params);
-                }
+            if (is_array($callable)) {
+                $className = $callable[0];
+                $methodName = $callable[1];
+                $instance = new $className();
+                return call_user_func_array([$instance, $methodName], $params);
+            } else {
+                return call_user_func_array($callable, $params);
             }
         };
 
@@ -74,20 +76,21 @@ class Router
                 function ($next, $middleware) {
                     return function () use ($middleware, $next) {
                         $middlewareInstance = new $middleware();
-                        $response = $middlewareInstance->before($next);
-                        if ($response) {
-                            echo $response;
-                            return;
-                        }
-                        return $next();
+                        return $middlewareInstance->before($next);
                     };
                 },
                 $next
             );
 
-            $middlewareChain();
+            $result = $middlewareChain();
+            if ($result !== null) {
+                echo $result;
+            }
         } else {
-            $next();
+            $result = $next();
+            if ($result !== null) {
+                echo $result;
+            }
         }
     }
 }

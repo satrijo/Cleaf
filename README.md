@@ -43,6 +43,26 @@ Cleaf is a lightweight, open-source PHP web framework designed to simplify web d
    npm install
    ```
 
+### Migration
+
+Before you start using Cleaf, you need to migrate your database to the latest version.
+Please edit the `database/schema.sql` or `database/demo.sql` file to your needs.
+Setup your database connection in the `app/Config/App.php` file.
+
+To migrate your database to the latest version, run the following command:
+
+```bash
+php migrate.php database/schema.sql
+or
+php migrate.php database/demo.sql
+```
+
+Default is `database/schema.sql`. If you want to migrate your database to the latest version, you can use `database/demo.sql`.
+```bash
+Demo account: admin@admin.com
+Demo password: admin123
+```
+
 ### Running the Application
 
 To start the built-in PHP development server:

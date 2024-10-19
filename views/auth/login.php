@@ -6,10 +6,10 @@ require __DIR__ . './../layout/header.php';
         <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Login to your
             account</h2>
         <?php if (!empty($message)): ?>
-            <div
-                class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm text-white text-center underline flex mx-auto gap-1 items-center justify-center">
-                <?= $message ?>
-            </div>
+        <div
+            class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm text-white text-center underline flex mx-auto gap-1 items-center justify-center">
+            <?= $message ?>
+        </div>
         <?php endif; ?>
     </div>
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -24,10 +24,10 @@ require __DIR__ . './../layout/header.php';
             <div>
                 <div class="flex items-center justify-between">
                     <label for="password" class="block text-sm font-medium leading-6 text-white">Password</label>
-                    <div class="text-sm">
+                    <!-- <div class="text-sm">
                         <a href="#" class="font-semibold text-indigo-400 hover:text-indigo-300">Forgot
                             password?</a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="mt-2">
                     <input id="password" name="password" type="password" autocomplete="current-password" required

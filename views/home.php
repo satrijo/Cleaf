@@ -11,16 +11,17 @@ require __DIR__ . '/layout/header.php';
     </div>
     <div class="mx-auto max-w-2xl text-center items-center flex flex-col justify-center">
         <!-- Make The List Of Links -->
-        <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl">Make the list of links</h1>
+        <h1 class="text-balance text-4xl font-bold tracking-tight text-white sm:text-6xl">Cleaf Link</h1>
         <p class="mt-6 text-lg leading-8 text-gray-300">
             Cleaf is a tool that can help you to make the list of links. You can add your own links to the list and
             share it with others. It is a free and open source project.
         </p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
-            <a href="#"
+            <a href="/pages"
                 class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Add
-                Your Link</a>
-            <a href="https://github.com/satrijo/cleaf" class="text-sm font-semibold leading-6 text-white">Source Code
+                Your Pages</a>
+            <a href="https://github.com/satrijo/cleaf/tree/feature/project-linktree"
+                class="text-sm font-semibold leading-6 text-white">Source Code
                 <span aria-hidden="true">→</span></a>
         </div>
     </div>

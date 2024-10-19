@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?? 'Cleaf Framework' ?></title>
+    <title><?= ucwords($title) ?? 'Cleaf Framework' ?></title>
 
     <link rel="stylesheet" href="/assets/main.css">
 </head>
 
 <body class="font-sans mx-auto">
+    <?php if (isset($_SESSION['user_id'])): ?>
     <header class="absolute inset-x-0 top-0 z-50">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
@@ -33,9 +34,9 @@
                 <?php if (isset($_SESSION['user_name'])): ?>
                 <a href="/" class="text-sm font-semibold leading-6 text-white">Home</a>
 
-                <a href="#" class="text-sm font-semibold leading-6 text-white">About</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-white">Pricing</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-white">Contact Us</a>
+                <a href="/pages" class="text-sm font-semibold leading-6 text-white">Pages</a>
+                <a href="/pricing" class="text-sm font-semibold leading-6 text-white">Pricing</a>
+                <a href="/contact" class="text-sm font-semibold leading-6 text-white">Contact Us</a>
 
                 <?php endif; ?>
             </div>
@@ -80,11 +81,11 @@
                             <a href="/"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Home</a>
 
-                            <a href="#"
-                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">About</a>
-                            <a href="#"
+                            <a href="/pages"
+                                class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Pages</a>
+                            <a href="/pricing"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Pricing</a>
-                            <a href="#"
+                            <a href="/contact"
                                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-white hover:bg-gray-800">Contact
                                 Us</a>
 
@@ -109,4 +110,5 @@
             </div>
         </div>
     </header>
-    <main class="min-h-screen flex items-center bg-gray-900">
+    <?php endif; ?>
+    <main class="min-h-screen flex items-center justify-center bg-gray-900">

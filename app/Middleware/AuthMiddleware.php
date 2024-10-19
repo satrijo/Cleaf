@@ -18,6 +18,7 @@ class AuthMiddleware implements Middleware
             exit;
         }
 
-        return $next();
+        $next();
+        return null;
     }
 }
