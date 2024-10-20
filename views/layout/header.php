@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/main.css">
 </head>
 
-<body class="font-sans mx-auto min-h-screen overflow-hidden">
+<body class="font-sans mx-auto min-h-screen">
     <?php if (isset($_SESSION['user_id'])): ?>
         <header class="absolute inset-x-0 top-0 z-50">
             <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
@@ -105,5 +105,5 @@
             </div>
         </header>
     <?php endif; ?>
-    <main class="h-screen flex items-center justify-center bg-gray-900">
+    <main class="min-h-screen flex items-center justify-center bg-gray-900">
         <!-- Main content goes here -->
