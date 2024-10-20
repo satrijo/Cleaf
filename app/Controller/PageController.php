@@ -15,7 +15,7 @@ class PageController extends Controller
 
     public function __construct()
     {
-        $this->user_id = $_SESSION['user_id'];
+        $this->user_id = $_SESSION['user_id'] ?? null;
         $this->page = new Page();
         $this->pages = $this->page->findByUserId($this->user_id);
     }
@@ -88,7 +88,7 @@ class PageController extends Controller
     public function show($name)
     {
         $page = $this->page->findBySlug($name);
-
+        $title = $name;
         if (!$page) {
             View::render('404');
             return;
@@ -96,7 +96,7 @@ class PageController extends Controller
 
         $contents = $this->page->findContentsByPageId($page['id']);
 
-        View::render('linktree', compact('page', 'contents'));
+        View::render('linktree', compact('title', 'page', 'contents'));
     }
 
 
