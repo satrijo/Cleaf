@@ -107,4 +107,3 @@
     <?php endif; ?>
     <main class="min-h-screen flex items-center justify-center bg-gray-900">
         <!-- Main content goes here -->
-    
